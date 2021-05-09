@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto+Slab:wght@600&display=swap" rel="stylesheet">       
+    <link rel="stylesheet" href="./src/css/style.css">
+    <title>Mini Linter</title>
+</head>
+<body>
+    <main>
+        <h1>Mini Linter</h1>
+        <p>Paste the story you want to improve</p>
+        <div class="container">
+            <div>
+                <form id="miniLinter">
+                    <section>
+                        <label for="story">Your Story</label>
+                        <textarea id="story" name="story" rows="15" cols="50"></textarea>
+                    </section>
+                    <section>
+                        <label for="overusedWords">Overused Words</label>
+                        <input id="overusedWords" name="overusedWords" rows="35" cols="50" aria-labelledby="overusedWords" aria-describedby="overusedWordsDesc"><br>
+                        <span class="instructions" id="overusedWordsDesc" tabindex="-1">Type the words you want to reduce here, separate the words by spaces</span>
+                    </section>
+                    <section>
+                        <label for="unnecessaryWords">Unnecessary Words</label>
+                        <input id="unnecessaryWords" name="unnecessaryWords" rows="35" cols="50" aria-labelledby="unnecessaryWords" aria-describedby="unnecessaryWordsDesc"><br>
+                        <span class="instructions" id="unnecessaryWordsDesc" tabindex="-1">Type the words you want to delete here, separate the words by spaces</span>
+                    </section>
+                    <button id="submit">Convert</button>
+                </form>
+            </div>
+            <div>
+                <div id="output">
+                    <section>
+                        <h2>Improved story</h2>
+                        <textarea id="improvedStory" rows="15" cols="50"></textarea>
+                        <p class="instructions">Copy the text to clipboard</p>
+                        <button id="copyToClipboard">Copy</button>
+                    </section>
+                    <section class="display-flex">
+                        <div>
+                            <h4>Sentences:</h4>
+                            <p class="amount" id="amountOfSentences"></p>
+                        </div>
+                        <div>
+                            <h4>Words:</h4>
+                            <p class="amount" id="amountOfWords"></p>
+                        </div>
+                        <div>
+                            <h4>Overused words:</h4>
+                            <p class="amount" id="amountOfOverusedWords"></p>
+                        </div>
+                        
+                    </section>
+                </div>
+            </div>
+            
+        </div>
+        
+    </main>
+    <script src="src/js/minilinter.js"></script>
+</body>
+</html>
