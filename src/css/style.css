@@ -1,27 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Miriam+Libre:wght@400;700&family=Space+Mono&display=swap');
+
 * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
 }
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #333;
+    --primary-color: #FFA500;
+    --primary-color-dark: #c68000;
+    --primary-color-light: #ffc65d;
+    --background-color: #444;
+    --input-background-color: #222;
+    --secondary-color: #f7e6c0;
+    --text-color: #fffcf2;
+    --input-text-color: #c5c5c5;
+    --gray: #888;
+    --lightgray: #f4f4f4;
+    font-family: 'Space Mono', monospace;
+    background-color: var(--background-color);
     color: white;
     font-size: 1em;
     line-height: 1.5;
 }
+header {
+    padding: 1.5em;
+}
+header #logo {
+    width: 17.5%;
+    max-width: 350px;
+    min-width: 100px;
+}
 h1, h2, h3, h4, h5, h6,
 label {
-    font-family: 'Roboto Slab', serif;
-    color: orange;
-
+    font-family: 'Miriam Libre', sans-serif;
+    color: var(--secondary-color);
+    font-weight: 700;
+}
+h1, h2, h3 {
+    margin-bottom: 1rem;
 }
 h1 {
     font-size: 2.5rem;
 
 }
+h2 {
+    font-size: 1.35rem;
+}
+h3 {
+    font-size: 1.2rem;
+}
 p {
-    color: #9C9C9C;
+    color: var(--text-color);
 }
 main {
     padding: 3rem;
@@ -36,7 +65,7 @@ main > p {
 .container > div {
     flex-grow: 1;
     flex-basis: 50%;
-    padding: 1rem;
+    padding: 0 2rem;
 }
 .display-flex{
     display: flex;
@@ -45,22 +74,14 @@ main > p {
     flex-grow: 1;
     flex-basis: 30%;
 }
-
-.amount{
-    color: #f4f4f4;
-    margin-top: 1rem;
-}
-
 #improvedStory{
-    margin-top: 1rem;
-    color: #f4f4f4;
+    color: var(--lightgray);
     min-height: 300px;
-    border: 1px dashed #222;
+    border: 1px dashed var(--gray);
     padding: .5rem;
-    background: #333;
+    background: var(--background-color);
     width: 100%;
-    font-family: 'Poppins', sans-serif;
-    background-color: #333;
+    background-color: var(--background-color);
     font-size: 1em;
     line-height: 1.5;
 }
@@ -76,48 +97,86 @@ textarea#story {
     border-color: transparent;
     width: 100%;
     border-radius: .5rem;
-    background-color: #222;
-    padding: .5rem;
-    color: #ccc;
+    background-color: var(--input-background-color);
+    padding: .85rem;
+    color: var(--input-text-color);
     font-size: 1rem;
-    font-family: 'Poppins', sans-serif;
+    
 }
 input:focus,
 textarea:focus {
-    border: 3px solid orange;
+    border: 3px solid var(--primary-color);
     outline: transparent;
 }
 
 input::selection{
-    background-color: #222;
-    color: #ccc;
+    background-color: var(--input-background-color);
+    color: var(--input-text-color);
 }
 
 button{
-    padding: .5rem 1rem;
+    padding: .75rem 1.25rem;
     border-radius: .35rem;
-    background-color: orange;
-    font-family: 'Roboto Slab', serif;
+    background-color: var(--primary-color);
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
     border-color: transparent;
     margin-top: 1.75rem;
+    text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
+    font-size: 80%;
+    box-shadow: 3px 3px 5px rgba(0,0,0,0.35);
+    transition: all .35s ease;
+}
+button:hover {
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.9);
+    background-color: var(--primary-color-light);
+    transition: all .35s ease;
+    cursor: pointer;
+    color: #000;
 }
 section {
     margin-top: 2rem;
     padding: .5rem 0;
 }
 label {
-    font-size: 1.35rem;
-    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    margin-bottom: .6rem;
     display: block;
 }
 .instructions {
-    color: #9C9C9C;
+    color: var(--text-color);
     font-size: .9rem;
     line-height: 1.6;
-    margin-top: .6rem;
+    margin-bottom: 1rem;
     display: block;
+}
+.stats {
+    flex-wrap: wrap;
+}
+.stats > div {
+    flex-basis: 15ch;
+    padding: 1rem 1rem 0 0;
+}
+.amount{
+    color: var(--lightgray);
+    margin: 0.5rem 0 1rem;
+}
+.amount span {
+    padding: 0.5rem;
+    min-height: 3rem;
+    width: 100%;
+    display: inline-block;
+}
+input::selection,
+textarea::selection {
+    color: var(--input-background-color);
+    background: var(--primary-color-light); /* WebKit/Blink Browsers */
+}
+input::-moz-selection,
+textarea::-moz-selection {
+    color: var(--input-background-color);
+    background: var(--primary-color-light); /* Gecko Browsers */
 }
 
 @media screen and (max-width: 768px){

@@ -10,9 +10,13 @@
     <title>Mini Linter</title>
 </head>
 <body>
+    <header>
+        <div id="logo">
+            <img src="./src/images/minilinter-logo.svg" alt="" />
+        </div>
+    </header>
     <main>
-        <h1>Mini Linter</h1>
-        <p>Paste the story you want to improve</p>
+        <h1>Improve Your Story</h1>
         <div class="container">
             <div>
                 <form id="miniLinter">
@@ -22,13 +26,13 @@
                     </section>
                     <section>
                         <label for="overusedWords">Overused Words</label>
-                        <input id="overusedWords" name="overusedWords" rows="35" cols="50" aria-labelledby="overusedWords" aria-describedby="overusedWordsDesc"><br>
                         <span class="instructions" id="overusedWordsDesc" tabindex="-1">Type the words you want to reduce here, separate the words by spaces</span>
+                        <input id="overusedWords" name="overusedWords" rows="35" cols="50" aria-labelledby="overusedWords" aria-describedby="overusedWordsDesc"><br>
                     </section>
                     <section>
                         <label for="unnecessaryWords">Unnecessary Words</label>
-                        <input id="unnecessaryWords" name="unnecessaryWords" rows="35" cols="50" aria-labelledby="unnecessaryWords" aria-describedby="unnecessaryWordsDesc"><br>
                         <span class="instructions" id="unnecessaryWordsDesc" tabindex="-1">Type the words you want to delete here, separate the words by spaces</span>
+                        <input id="unnecessaryWords" name="unnecessaryWords" rows="35" cols="50" aria-labelledby="unnecessaryWords" aria-describedby="unnecessaryWordsDesc"><br>
                     </section>
                     <button id="submit">Convert</button>
                 </form>
@@ -36,25 +40,34 @@
             <div>
                 <div id="output">
                     <section>
-                        <h2>Improved story</h2>
+                        <label>Improved story</label>
                         <textarea id="improvedStory" rows="15" cols="50"></textarea>
-                        <p class="instructions">Copy the text to clipboard</p>
-                        <button id="copyToClipboard">Copy</button>
+                        <button id="copyToClipboard" title="Copy the text to clipboard">Copy</button>
                     </section>
-                    <section class="display-flex">
-                        <div>
-                            <h4>Sentences:</h4>
-                            <p class="amount" id="amountOfSentences"></p>
+                    <section>
+                        <h2>Stats</h2>
+                        <div class="display-flex stats">
+                            <div>
+                                <h4>Sentences:</h4>
+                                <p class="amount" id="amountOfSentences"><span></span></p>
+                            </div>
+                            <div>
+                                <h4>Words:</h4>
+                                <p class="amount" id="amountOfWords"><span></span></p>
+                            </div>
+                            <div>
+                                <h4>Overused words:</h4>
+                                <p class="amount" id="amountOfOverusedWords"><span></span></p>
+                            </div>
+                            <div>
+                                <h4>Unnecessary words:</h4>
+                                <p class="amount" id="amountOfUnnecessaryWords"><span></span></p>
+                            </div>
+                            <div>
+                                <h4>Removed words:</h4>
+                                <p class="amount" id="amountOfRemovedWords"><span></span></p>
+                            </div>
                         </div>
-                        <div>
-                            <h4>Words:</h4>
-                            <p class="amount" id="amountOfWords"></p>
-                        </div>
-                        <div>
-                            <h4>Overused words:</h4>
-                            <p class="amount" id="amountOfOverusedWords"></p>
-                        </div>
-                        
                     </section>
                 </div>
             </div>

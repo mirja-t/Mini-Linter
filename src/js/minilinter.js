@@ -14,6 +14,8 @@ const improvedStory = document.getElementById('improvedStory');
 const amountOfSentences = document.getElementById('amountOfSentences');
 const amountOfWords = document.getElementById('amountOfWords');
 const amountOfOverusedWords = document.getElementById('amountOfOverusedWords');
+const amountOfUnnecessaryWords = document.getElementById('amountOfUnnecessaryWords');
+const amountOfRemovedWords = document.getElementById('amountOfRemovedWords');
 
 const btnCopy = document.getElementById('copyToClipboard');
 const copyToClipboard = () => {
@@ -30,20 +32,23 @@ const copyToClipboard = () => {
 }
 btnCopy.addEventListener('click', copyToClipboard);
 
-const getAmountOfOverusedWords = (betterWords) => {
-  let list = [];
-  overusedWords.value.split(' ').forEach(word => {
-    let hit = betterWords.filter(el => el === word);
-    list.push( word + ': ' + hit.length + '<br>');
+const getListOfWords = (words, list) => {
+  if(!list.value.length) return null;
+  let wordList = [];
+  list.value.split(' ').forEach(word => {
+    let hit = words.filter(el => el === word);
+    wordList.push( word + ': ' + hit.length + '<br>');
   });
-  return list.join('');
+  return wordList.join('');
 }
 
-const getAmountOfSentences = () => {
+const getAmountOfWords = (str) => str.value.split(' ').length;
+
+const getAmountOfSentences = (str) => {
   const punctuationMarks = ['.','!','?'];
   let occurance =
   punctuationMarks.map(mark => {
-    let split = story.value.split(mark);
+    let split = str.value.split(mark);
     return split.length;
   });  
   return occurance.reduce(( accumulator, currentValue ) => accumulator + currentValue);
@@ -53,29 +58,37 @@ const btn = document.getElementById('submit');
 btn.addEventListener('click', (event)=>{
   event.preventDefault();
 
-  const storyWords = story.value.split(' ');
-
-  function filterWords(value) {
-    return !unnecessaryWords.value.includes(value);
+  function filterWords(word) {
+    return !unnecessaryWords.value.includes(word);
   }
-  const betterWords = storyWords.filter(filterWords);
 
-  improvedStory.innerHTML = betterWords.join(' ');
-  
-  amountOfSentences.innerHTML = getAmountOfSentences();
-  amountOfWords.innerHTML = storyWords.length;
-  amountOfOverusedWords.innerHTML = getAmountOfOverusedWords(betterWords);
-})
+  function reduceWords(words) {
+    
+    const overusedWordsList = {};
+    let betterWords = [];
 
+    words.forEach(word => {
+      if(overusedWords.value.split(' ').includes(word)) {
+        overusedWordsList[word] = overusedWordsList[word] >= 0 ? overusedWordsList[word]+1 : 0;
+        if(overusedWordsList[word] % 2 === 0) betterWords.push(word)
+      }
+      else {
+        betterWords.push(word)
+      }
+    });
+    return betterWords;
+  }
 
+  const filteredWords = story.value.split(' ').filter(filterWords);
+  const reducedWords = reduceWords(filteredWords);
+  const listOfUnnecessaryWords = getListOfWords(story.value.split(' '), unnecessaryWords);
+  const listOfOverusedWords = getListOfWords(story.value.split(' '), overusedWords);
+  console.log(listOfUnnecessaryWords, listOfOverusedWords)
+  improvedStory.innerHTML = reducedWords.join(' ');
+  amountOfSentences.innerHTML = getAmountOfSentences(improvedStory);
+  amountOfRemovedWords.innerHTML = getAmountOfWords(story) - getAmountOfWords(improvedStory);
+  amountOfWords.innerHTML = reducedWords.length;
+  amountOfUnnecessaryWords.innerHTML = listOfUnnecessaryWords ? listOfUnnecessaryWords : '–';
+  amountOfOverusedWords.innerHTML = listOfOverusedWords ? listOfOverusedWords : '–';
+});
 
- /*
-console.log(
-  'amount of sentences: ' + amountOfSentences() + '\n' +
-  'amount of words: ' + storyWords.length + '\n' +
-  'amount of overused words:\n' + amountOfOverusedWords() + '\n' + 
-  'improved story:\n' 
-  + betterWords.join(' ')
-  );
-
-*/
