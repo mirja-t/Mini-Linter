@@ -83,7 +83,8 @@ btn.addEventListener('click', (event)=>{
   const reducedWords = reduceWords(filteredWords);
   const listOfUnnecessaryWords = getListOfWords(story.value.split(' '), unnecessaryWords);
   const listOfOverusedWords = getListOfWords(story.value.split(' '), overusedWords);
-  console.log(listOfUnnecessaryWords, listOfOverusedWords)
+
+  console.log(reducedWords)
   improvedStory.innerHTML = reducedWords.join(' ');
   amountOfSentences.innerHTML = getAmountOfSentences(improvedStory);
   amountOfRemovedWords.innerHTML = getAmountOfWords(story) - getAmountOfWords(improvedStory);
